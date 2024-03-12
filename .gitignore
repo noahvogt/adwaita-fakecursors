@@ -1,0 +1,5 @@
+*.tar.*
+*.log
+nohup.out
+transparent-xcursor/
+adwaita-icon-theme/
