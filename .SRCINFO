@@ -1,11 +1,11 @@
-pkgbase = adwaita-icon-theme
-	pkgdesc = GNOME standard icons
-	pkgver = 45.0
+pkgbase = adwaita-icon-theme-fake-cursors
+	pkgdesc = GNOME standard icons - patched to make mouse cursors invincible
+	pkgver = 46.0
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/adwaita-icon-theme
 	arch = any
-	license = CCPL:by-sa
-	license = LGPL3
+	license = CC-BY-SA-3.0
+	license = LGPL-3.0-only
 	makedepends = xorg-xcursorgen
 	makedepends = git
 	makedepends = gtk3
@@ -13,7 +13,7 @@ pkgbase = adwaita-icon-theme
 	depends = hicolor-icon-theme
 	depends = gtk-update-icon-cache
 	depends = librsvg
-	source = git+https://gitlab.gnome.org/GNOME/adwaita-icon-theme.git#commit=709725baa9e17e8d0ca62eab7920162bfeda37b9
+	source = git+https://gitlab.gnome.org/GNOME/adwaita-icon-theme.git#commit=7d2510820199ff7f233511a00895043f3843dbcd
 	source = git+https://git.noahvogt.com/noah/transparent-xcursor.git
 	b2sums = SKIP
 	b2sums = SKIP
@@ -25,7 +25,7 @@ pkgname = adwaita-icon-theme
 	depends = adwaita-cursors
 
 pkgname = adwaita-fake-cursors
-	pkgdesc = GNOME standard cursors
+	pkgdesc = GNOME standard cursors - patched to make mouse cursors invincible
 	depends = 
 	provides = adwaita-cursors
 	conflicts = adwaita-cursors
