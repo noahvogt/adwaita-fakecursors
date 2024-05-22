@@ -14,30 +14,17 @@ pkgrel=1
 pkgdesc="GNOME standard icons - patched to make mouse cursors invincible"
 url="https://gitlab.gnome.org/GNOME/adwaita-icon-theme"
 arch=(any)
-license=(
-  CC-BY-SA-3.0
-  LGPL-3.0-only
-)
-depends=(
-  hicolor-icon-theme
-  gtk-update-icon-cache
-  librsvg
-)
+license=("CC-BY-SA-3.0 OR LGPL-3.0-only")
+depends=(hicolor-icon-theme)
 makedepends=(
   xorg-xcursorgen
   git
-  gtk3
+  gtk-update-icon-cache
   meson
 )
-_commit=7d2510820199ff7f233511a00895043f3843dbcd  # tags/46.0^0
-source=("git+https://gitlab.gnome.org/GNOME/adwaita-icon-theme.git#commit=$_commit"
+source=("git+https://gitlab.gnome.org/GNOME/adwaita-icon-theme.git#tag=${pkgver/[a-z]/.&}"
         "git+https://git.noahvogt.com/noah/transparent-xcursor.git")
 b2sums=('SKIP' 'SKIP')
-
-pkgver() {
-  cd $_upstream_pkgbase
-    git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
-}
 
 prepare() {
   cd $_upstream_pkgbase
@@ -57,8 +44,13 @@ package_adwaita-icon-theme() {
 
   meson install -C build --destdir "$pkgdir"
 
+  # Split cursors
   mkdir -p cursors/usr/share/icons/Adwaita
   mv {"$pkgdir",cursors}/usr/share/icons/Adwaita/cursors
+
+  # Covered by common licenses
+  rm -r "$pkgdir/usr/share/licenses"
+
 }
 
 package_adwaita-fake-cursors() {
